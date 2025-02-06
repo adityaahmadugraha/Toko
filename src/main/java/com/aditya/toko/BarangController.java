@@ -7,7 +7,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/barang")
-public class BarangController {
+
+final class BarangController {
     @Autowired
     private BarangService barangService;
 
@@ -18,8 +19,7 @@ public class BarangController {
 
     @GetMapping
     public List<Barang> getAllBarang() {
-        return barangService.getAllBarang();
-    }
+        return barangService.getAllBarang();}
 
     @GetMapping("/{id}")
     public Barang getBarangById(@PathVariable Long id) {

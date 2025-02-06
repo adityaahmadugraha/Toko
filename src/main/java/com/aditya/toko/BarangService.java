@@ -2,22 +2,23 @@ package com.aditya.toko;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class BarangService {
     @Autowired
-    private BarangRepository barangRepository;
+    private final BarangRepository barangRepository;
 
-    public Barang createBarang(Barang barang) {
-        return barangRepository.save(barang);
+    public BarangService(BarangRepository barangRepository) {
+        this.barangRepository = barangRepository;
     }
-
     public List<Barang> getAllBarang() {
         return barangRepository.findAll();
     }
 
+    public Barang createBarang(Barang barang) {
+        return barangRepository.save(barang);
+    }
     public Barang getBarangById(Long id) {
         return barangRepository.findById(id).orElseThrow(() -> new RuntimeException("Barang not found"));
     }
@@ -35,5 +36,8 @@ public class BarangService {
     public void deleteBarang(Long id) {
         barangRepository.deleteById(id);
     }
+
+
+
 }
 
